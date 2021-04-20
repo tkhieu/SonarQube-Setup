@@ -1,4 +1,3 @@
-
 # SmartDev SonarQube Setup Document
 
 ## General Information
