@@ -1,0 +1,17 @@
+# This is a basic workflow to help you get started with Actions
+
+name: SonaQube-Android
+
+on: push
+jobs:
+  sonarQubeTrigger:
+    name: SonarQube Android Trigger
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: actions/setup-java@v2
+      with:
+        distribution: 'adopt' # See 'Supported distributions' for available options
+        java-version: '14'
+    - run: ./gradlew sonarqube -Dsonar.host.url=https://sd-sonarqube.smartdev.vn -Dsonar.login=d235d8df51b3028be3dc2047f523804302274a64 -Dsonar.projectName=SonarQube-Demo-Android
+      working-directory: ./Android/SonarQubeDemoAndroid
