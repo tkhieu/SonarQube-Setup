@@ -5,15 +5,19 @@ name: SonaQube-dotNet
 on: push
 jobs:
   sonarQubeTrigger:
-    name: SonarQube Trigger
+    name: SonarQube dotNet Trigger
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
+    - uses: actions/setup-java@v2
+      with:
+        distribution: 'adopt' # See 'Supported distributions' for available options
+        java-version: '14'
     - uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '5.0.x' # SDK Version to use
     - run: dotnet new tool-manifest
     - run: dotnet tool install dotnet-sonarscanner
-    - run: dotnet sonarscanner begin /k:"SonarQubeSetup" /d:sonar.host.url="https://sd-sonarqube.smartdev.vn" /d:sonar.login="d235d8df51b3028be3dc2047f523804302274a64" /d:sonar.projectName=SonarQube-Demo-dotNet
+    - run: dotnet sonarscanner begin /k:"SonarQubeSetup" /d:sonar.host.url="https://sd-sonarqube.smartdev.vn" /d:sonar.login="d235d8df51b3028be3dc2047f523804302274a64" /n:SonarQube-Demo-dotNet
     - run: dotnet build CSharp/TestCSharpSonarQube/TestCSharpSonarQube.sln
     - run: dotnet sonarscanner end /d:sonar.login="d235d8df51b3028be3dc2047f523804302274a64"
