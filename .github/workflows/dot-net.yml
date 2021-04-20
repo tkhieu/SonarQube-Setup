@@ -14,6 +14,6 @@ jobs:
         dotnet-version: '5.0.x' # SDK Version to use
     - run: dotnet new tool-manifest
     - run: dotnet tool install dotnet-sonarscanner
-    - run: dotnet sonarscanner begin /k:"SonarQubeSetup" /d:sonar.host.url="https://sd-sonarqube.smartdev.vn" /d:sonar.login="d235d8df51b3028be3dc2047f523804302274a64"
+    - run: dotnet sonarscanner begin /k:"SonarQubeSetup" /d:sonar.host.url="https://sd-sonarqube.smartdev.vn" /d:sonar.login="d235d8df51b3028be3dc2047f523804302274a64" -Dsonar.projectName=SonarQube-Demo-dotNet
     - run: dotnet build CSharp/TestCSharpSonarQube/TestCSharpSonarQube.sln
     - run: dotnet sonarscanner end /d:sonar.login="d235d8df51b3028be3dc2047f523804302274a64"

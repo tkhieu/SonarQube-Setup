@@ -1,11 +1,11 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Build
+name: SonaQube-Java
 
 on: push
 jobs:
   sonarQubeTrigger:
-    name: SonarQube Trigger
+    name: SonarQube Java Trigger
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
@@ -16,7 +16,7 @@ jobs:
       with:
         distribution: 'adopt' # See 'Supported distributions' for available options
         java-version: '14'
-    - run: ./gradlew sonarqube -Dsonar.host.url=https://sd-sonarqube.smartdev.vn -Dsonar.login=d235d8df51b3028be3dc2047f523804302274a64 -Dsonar.projectName=SonarQube-Demo-Java -Dcom.smartdev.sonarqube-demo
+    - run: ./gradlew sonarqube -Dsonar.host.url=https://sd-sonarqube.smartdev.vn -Dsonar.login=d235d8df51b3028be3dc2047f523804302274a64 -Dsonar.projectName=SonarQube-Demo-Java
       working-directory: ./Java/sonarqube-demo/
     # - run: dotnet new tool-manifest
     # - run: dotnet tool install dotnet-sonarscanner
