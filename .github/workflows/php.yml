@@ -1,0 +1,21 @@
+# This is a basic workflow to help you get started with Actions
+
+name: SonaQube-PHP
+
+on: push
+jobs:
+  sonarQubeTrigger:
+    name: SonarQube PHP Trigger
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Setup PHP Action
+      uses: shivammathur/setup-php@2.10.0
+    - uses: actions/setup-java@v2
+      with:
+        distribution: 'adopt' # See 'Supported distributions' for available options
+        java-version: '14'
+    - run: composer require rogervila/php-sonarqube-scanner
+    - run: composer require rogervila/php-sonarqube-scanner && ./vendor/bin/sonar-scanner -Dsonar.host.url=https://sd-sonarqube.smartdev.vn -Dsonar.login=d235d8df51b3028be3dc2047f523804302274a64 -Dsonar.projectName=SonarQube-Demo-PHP
+      working-directory: ./PHP/sonarqube-demo-php
+    
