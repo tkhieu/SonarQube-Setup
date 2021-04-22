@@ -75,6 +75,9 @@ jobs:
       working-directory: ./Java/sonarqube-demo/
 ```
 
+* Setup Java (for SonarQube CLI)
+* Run SonarQube command
+
 ## Android Project
 
 ```
@@ -99,6 +102,10 @@ jobs:
 
 ```
 
+* Setup Java (for SonarQube CLI)
+* Setup Android SDK
+* Run SonarQube command
+
 ## PHP Project
 
 ```
@@ -111,16 +118,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Setup PHP Action
-      uses: shivammathur/setup-php@2.10.0
     - uses: actions/setup-java@v2
       with:
         distribution: 'zulu' # See 'Supported distributions' for available options
         java-version: '15'
         check-latest: true
+    - name: Setup PHP Action
+      uses: shivammathur/setup-php@2.10.0
     - run: composer require rogervila/php-sonarqube-scanner
     - run: composer require rogervila/php-sonarqube-scanner && ./vendor/bin/sonar-scanner -Dsonar.host.url=${{secrets.SONARQUBE_HOST}} -Dsonar.login=${{secrets.SONARQUBE_TOKEN}} -Dsonar.projectName=SonarQube-Demo-PHP
       working-directory: ./PHP/sonarqube-demo-php
     
 ```
 
+* Setup Java (for SonarQube CLI)
+* Setup PHP
+* Run SonarQube command
