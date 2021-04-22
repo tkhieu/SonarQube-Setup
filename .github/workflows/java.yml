@@ -11,7 +11,8 @@ jobs:
     - uses: actions/checkout@master
     - uses: actions/setup-java@v2
       with:
-        distribution: 'adopt' # See 'Supported distributions' for available options
-        java-version: '14'
+        distribution: 'zulu' # See 'Supported distributions' for available options
+        java-version: '15'
+        check-latest: true
     - run: ./gradlew sonarqube -Dsonar.host.url=${{secrets.SONARQUBE_HOST}} -Dsonar.login=${{secrets.SONARQUBE_TOKEN}} -Dsonar.projectName=SonarQube-Demo-Java
       working-directory: ./Java/sonarqube-demo/

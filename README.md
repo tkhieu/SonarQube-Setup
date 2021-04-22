@@ -27,8 +27,9 @@ jobs:
     - uses: actions/checkout@master
     - uses: actions/setup-java@v2
       with:
-        distribution: 'adopt' # See 'Supported distributions' for available options
-        java-version: '14'
+        distribution: 'zulu' # See 'Supported distributions' for available options
+        java-version: '15'
+        check-latest: true
     - uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '5.0.x' # SDK Version to use
@@ -67,8 +68,9 @@ jobs:
     - uses: actions/checkout@master
     - uses: actions/setup-java@v2
       with:
-        distribution: 'adopt' # See 'Supported distributions' for available options
-        java-version: '14'
+        distribution: 'zulu' # See 'Supported distributions' for available options
+        java-version: '15'
+        check-latest: true
     - run: ./gradlew sonarqube -Dsonar.host.url=${{secrets.SONARQUBE_HOST}} -Dsonar.login=${{secrets.SONARQUBE_TOKEN}} -Dsonar.projectName=SonarQube-Demo-Java
       working-directory: ./Java/sonarqube-demo/
 ```
@@ -87,8 +89,9 @@ jobs:
     - uses: actions/checkout@master
     - uses: actions/setup-java@v2
       with:
-        distribution: 'adopt' # See 'Supported distributions' for available options
-        java-version: '14'
+        distribution: 'zulu' # See 'Supported distributions' for available options
+        java-version: '15'
+        check-latest: true
     - name: Setup Android SDK
       uses: android-actions/setup-android@v2
     - run: ./gradlew sonarqube -Dsonar.host.url=${{secrets.SONARQUBE_HOST}} -Dsonar.login=${{secrets.SONARQUBE_TOKEN}} -Dsonar.projectName=SonarQube-Demo-Android
@@ -112,8 +115,9 @@ jobs:
       uses: shivammathur/setup-php@2.10.0
     - uses: actions/setup-java@v2
       with:
-        distribution: 'adopt' # See 'Supported distributions' for available options
-        java-version: '14'
+        distribution: 'zulu' # See 'Supported distributions' for available options
+        java-version: '15'
+        check-latest: true
     - run: composer require rogervila/php-sonarqube-scanner
     - run: composer require rogervila/php-sonarqube-scanner && ./vendor/bin/sonar-scanner -Dsonar.host.url=${{secrets.SONARQUBE_HOST}} -Dsonar.login=${{secrets.SONARQUBE_TOKEN}} -Dsonar.projectName=SonarQube-Demo-PHP
       working-directory: ./PHP/sonarqube-demo-php
